@@ -2,7 +2,7 @@ name: Get Latest Tag from Manual Approval Issue
 author: toppulous
 branding:
   color: purple
-  icon: square-message
+  icon: message-square
 description: Retrives tag information from comments in given issue number
 inputs:
   issue-number:
