@@ -8,6 +8,10 @@ inputs:
   issue-number:
     descirption: number of issue to get latest tag from (generally, a manual approval issue that was just closed)
     required: true
+  keyword:
+    description: keyword used in update-manual-approval-issue
+    required: false
+    default: GITHUB_ACTIONS
   github-token:
     description: token used to create authenticated client
     required: false

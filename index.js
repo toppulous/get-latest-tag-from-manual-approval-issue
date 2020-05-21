@@ -16,9 +16,11 @@ async function run() {
   });
 
   processed_comments = comments.map(comment => {
-    user_login: comment.user.login,
-    body: comment.body,
-    created_at: comment.created_at,
+    return {
+      user_login: comment.user.login,
+      body: comment.body,
+      created_at: comment.created_at,
+    }
   }).filter(comment => comment.user_login.includes('github-actions'))
   .filter(comment => body.startsWith(keyword))
   .sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
