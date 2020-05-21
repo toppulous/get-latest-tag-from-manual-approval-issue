@@ -15,7 +15,7 @@ async function run() {
   });
 
   core.info('Got comments');
-  core.info(comments);
+  console.log(comments);
 
   core.setOutput('tag', 'tag'); // TODO
 }
