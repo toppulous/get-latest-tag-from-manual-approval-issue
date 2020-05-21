@@ -15,6 +15,9 @@ async function run() {
     issue_number: issue_number,
   });
 
+  console.log('raw comments');
+  console.log(comments);
+
   processed_comments = comments.map(comment => {
     return {
       user_login: comment.user.login,
@@ -22,7 +25,7 @@ async function run() {
       created_at: comment.created_at,
     }
   }).filter(comment => comment.user_login.includes('github-actions'))
-  .filter(comment => body.startsWith(keyword))
+  .filter(comment => comment.body.startsWith(keyword))
   .sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
 
   core.info('Got comments');
