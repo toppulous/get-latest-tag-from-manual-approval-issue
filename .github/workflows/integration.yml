@@ -22,4 +22,4 @@ jobs:
         with:
           issue-number: ${{ steps.issue1.outputs.issue-number }}
       - run: |
-        echo 'tag ${{ steps.get-tag.outputs.tag }}'
+          echo 'tag ${{ steps.get-tag.outputs.tag }}'
