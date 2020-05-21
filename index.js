@@ -15,9 +15,6 @@ async function run() {
     issue_number: issue_number,
   });
 
-  console.log('raw comments');
-  console.log(comments);
-
   processed_comments = comments.map(comment => {
     return {
       user_login: comment.user.login,
@@ -28,10 +25,13 @@ async function run() {
   .filter(comment => comment.body.startsWith(keyword))
   .sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
 
-  core.info('Got comments');
+  core.info('processed comments');
   console.log(processed_comments);
 
-  core.setOutput('tag', 'tag'); // TODO
+  comment = processed_comments[0]; // newest comment
+  comment_tag_raw = comment.body.split('\n')[1];
+  tag = comment_tag_raw.split('tag:')[1].trim();
+  core.setOutput('tag', tag);
 }
 
 core.info('Starting...');
