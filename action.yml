@@ -1,0 +1,20 @@
+name: Get Latest Tag from Manual Approval Issue
+author: toppulous
+branding:
+  color: purple
+  icon: square-message
+description: Retrives tag information from comments in given issue number
+inputs:
+  issue-number:
+    descirption: number of issue to get latest tag from (generally, a manual approval issue that was just closed)
+    required: true
+  github-token:
+    description: token used to create authenticated client
+    required: false
+    default: ${{ github.token }}
+outputs:
+  tag:
+    description: the latest tag on the approved issue
+runs:
+  using: node12
+  main: index.js

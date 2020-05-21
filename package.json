@@ -1,0 +1,24 @@
+{
+  "name": "get-latest-tag-from-manual-approval-issue",
+  "version": "1.0.0",
+  "description": "GitHub Action to get the latest tag from an issue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toppulous/get-latest-tag-from-manual-approval-issue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toppulous/get-latest-tag-from-manual-approval-issue/issues"
+  },
+  "homepage": "https://github.com/toppulous/get-latest-tag-from-manual-approval-issue#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^2.2.0"
+  }
+}

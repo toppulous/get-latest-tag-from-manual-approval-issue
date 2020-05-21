@@ -1,0 +1,25 @@
+on:
+  push:
+    branches: master
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create issue
+        id: issue1
+        uses: toppulous/create-manual-approval-issue@v1
+        with:
+          label: integration
+      - name: update issue
+        uses: toppulous/update-manual-approval-issue@v1
+        with:
+          issue-number: ${{ steps.issue1.outputs.issue-number }}
+          tag: ${{ github.sha }}
+      - name: get tag from issue
+        id: get-tag
+        uses: toppulous/get-latest-tag-from-manual-approval-issue@master
+        with:
+          issue-number: ${{ steps.issue1.outputs.issue-number }}
+      - run: |
+        echo 'tag ${{ steps.get-tag.outputs.tag }}'
