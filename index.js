@@ -19,6 +19,8 @@ async function run() {
     }
   ).then((comments) => {
     processed_comments = comments.map(comment => {
+      console.log('Comment')
+      console.log(comment)
       return {
         user_login: comment.user.login,
         body: comment.body,
