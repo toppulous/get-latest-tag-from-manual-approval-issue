@@ -35,9 +35,10 @@ async function run() {
     comment_tag_raw = comment.body.split('\n')[1];
     tag = comment_tag_raw.split('tag:')[1].trim();
     core.setOutput('tag', tag);
-  }).catch((e) =>
+  }).catch((e) =>{
     console.log('Error');
     conosle.log(e);
+  }
   );
 }
 
