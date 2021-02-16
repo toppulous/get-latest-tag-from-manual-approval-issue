@@ -10,7 +10,7 @@ async function run() {
 
   const octokit = new github.GitHub(token);
 
-  const comments = await octokit.issues.listComments(
+  const {data: comments } = await octokit.issues.listComments(
     {
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
