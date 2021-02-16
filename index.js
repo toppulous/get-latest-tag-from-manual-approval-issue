@@ -10,38 +10,33 @@ async function run() {
 
   const octokit = new github.GitHub(token);
 
-  octokit.paginate(
+  const comments = await octokit.paginate(
     octokit.issues.listComments,
     {
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
       issue_number: issue_number,
     }
-  ).then((comments) => {
-    processed_comments = comments.map(comment => {
-      console.log('Comment')
-      console.log(comment)
-      return {
-        user_login: comment.user.login,
-        body: comment.body,
-        created_at: comment.created_at,
-      }
-    }).filter(comment => comment.user_login.includes('github-actions'))
-    .filter(comment => comment.body.startsWith(keyword))
-    .sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
-
-    core.info('processed comments');
-    console.log(processed_comments);
-
-    comment = processed_comments[0]; // newest comment
-    comment_tag_raw = comment.body.split('\n')[1];
-    tag = comment_tag_raw.split('tag:')[1].trim();
-    core.setOutput('tag', tag);
-  }).catch((e) =>{
-    console.log('Error');
-    console.log(e);
-  }
   );
+  processed_comments = comments.map(comment => {
+    console.log('Comment')
+    console.log(comment)
+    return {
+      user_login: comment.user.login,
+      body: comment.body,
+      created_at: comment.created_at,
+    }
+  }).filter(comment => comment.user_login.includes('github-actions'))
+  .filter(comment => comment.body.startsWith(keyword))
+  .sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+
+  core.info('processed comments');
+  console.log(processed_comments);
+
+  comment = processed_comments[0]; // newest comment
+  comment_tag_raw = comment.body.split('\n')[1];
+  tag = comment_tag_raw.split('tag:')[1].trim();
+  core.setOutput('tag', tag);
 }
 
 core.info('Starting...');
