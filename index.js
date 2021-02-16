@@ -37,7 +37,7 @@ async function run() {
     core.setOutput('tag', tag);
   }).catch((e) =>{
     console.log('Error');
-    conosle.log(e);
+    console.log(e);
   }
   );
 }
