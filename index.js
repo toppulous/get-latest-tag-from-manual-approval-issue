@@ -9,11 +9,16 @@ async function run() {
   core.info(`Getting latest tag off of ${issue_number}`);
 
   const octokit = new github.GitHub(token);
-  const { data: comments } = await octokit.issues.listComments({
-    owner: github.context.repo.owner,
-    repo: github.context.repo.repo,
-    issue_number: issue_number,
-  });
+
+  const comments = await octokit.paginate(
+    octokit.issues.listComments,
+    {
+      owner: github.context.repo.owner,
+      repo: github.context.repo.repo,
+      issue_number: issue_number,
+      per_page: 100,
+    }
+  );
 
   processed_comments = comments.map(comment => {
     return {
