@@ -10,12 +10,12 @@ async function run() {
 
   const octokit = new github.GitHub(token);
 
-  const comments = await octokit.paginate(
-    octokit.issues.listComments,
+  const comments = await octokit.issues.listComments(
     {
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
       issue_number: issue_number,
+      per_page: 100,
     }
   );
   processed_comments = comments.map(comment => {
